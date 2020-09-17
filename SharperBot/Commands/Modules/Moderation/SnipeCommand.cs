@@ -20,7 +20,7 @@ namespace SharperBot.Commands.Modules.Moderation
                 {
                     Title = "Error",
                     Timestamp = new DateTimeOffset(),
-                    Footer = new EmbedFooterBuilder()
+                    Footer = new EmbedFooterBuilder
                     {
                         Text = "Sniper By Jviguy Games! [Click Here!][]"
                     },

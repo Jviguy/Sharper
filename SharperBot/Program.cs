@@ -12,8 +12,8 @@ namespace SharperBot
     class Program
     {
         private GameManager GameManager;
-        static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
-        private async Task MainAsync() 
+        static void Main(string[] args) => new Program().MainAsync(args[0]).GetAwaiter().GetResult();
+        private async Task MainAsync(string token) 
         {
             var client = new DiscordSocketClient();
             GameManager = new GameManager(client);
@@ -27,7 +27,7 @@ namespace SharperBot
             // Internet or by using other methods such as reading from 
             // a configuration.
             await client.LoginAsync(TokenType.Bot, 
-                "TOKENNNNNNN LEAVE IT");
+                token);
             await client.StartAsync();
             //init the commands
             var commands = new CommandHandler(client, new CommandService(),InstallServices());
