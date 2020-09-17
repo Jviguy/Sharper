@@ -27,7 +27,7 @@ namespace SharperBot
             // Internet or by using other methods such as reading from 
             // a configuration.
             await client.LoginAsync(TokenType.Bot, 
-                "NzU0MzU3NDcyMzE1MzEwMTMw.X1zkJA.gBX8SwjX9H8lbNNQlHPJ29csX7E");
+                "TOKENNNNNNN LEAVE IT");
             await client.StartAsync();
             //init the commands
             var commands = new CommandHandler(client, new CommandService(),InstallServices());
