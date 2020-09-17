@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CSharpCanvas" Version="0.1.0.4" />
+      <PackageReference Include="Discord.Net" Version="2.2.0" />
+      <PackageReference Include="Discord.Net.Commands" Version="2.2.0" />
+      <PackageReference Include="Discord.Net.Core" Version="2.2.0" />
+      <PackageReference Include="Discord.Net.Rest" Version="2.2.0" />
+      <PackageReference Include="Discord.Net.WebSocket" Version="2.2.0" />
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0-preview.8.20407.11" />
+      <PackageReference Include="RT.Util" Version="2.0.1668" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Commands\Modules\Economy" />
+    </ItemGroup>
+
+</Project>
