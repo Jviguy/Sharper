@@ -40,9 +40,9 @@ namespace SharperBot
             Console.WriteLine(msg.ToString());
             return Task.CompletedTask;
         }
-        private IServiceProvider InstallServices()
+        private static IServiceProvider InstallServices()
         {
-            ServiceCollection services = new ServiceCollection();
+            var services = new ServiceCollection();
             // Add all additional services here
             // Return the service provider.
             return services.BuildServiceProvider();

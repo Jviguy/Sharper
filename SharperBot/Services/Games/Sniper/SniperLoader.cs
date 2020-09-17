@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Discord.WebSocket;
 
 namespace SharperBot.Services.Games.Sniper
@@ -21,11 +22,19 @@ namespace SharperBot.Services.Games.Sniper
 
         public bool ShouldAddChannel(ulong id)
         {
-            if (Logs[id] == null)
+            try
+            {
+                if (Logs[id] == null)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch
             {
                 return true;
             }
-            return false;
         }
 
         public void AddChannel(ulong id)
