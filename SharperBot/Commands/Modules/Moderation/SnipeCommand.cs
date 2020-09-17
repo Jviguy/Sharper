@@ -11,19 +11,30 @@ namespace SharperBot.Commands.Modules.Moderation
     {
         [Command("snipe", RunMode = RunMode.Async)]
         [Summary("Snipes a deleted message")]
-        public async Task SnipeAsync([Summary("the number index to fetch")] int index)
+        public async Task SnipeAsync([Summary("the number index to fetch")] int index=0)
         {
-            var game = (SniperLoader) GameManager.GetInstance().GetGame(GameManager.Sniper);
-            if (game.ShouldAddChannel(Context.Channel.Id))
+            try
+            {
+                var game = (SniperLoader) GameManager.GetInstance().GetGame(GameManager.Sniper);
+                if (game.ShouldAddChannel(Context.Channel.Id))
+                {
+                    await ReplyAsync(embed: new EmbedBuilder()
+                    {
+                        Title = "Error",
+                        Footer = new EmbedFooterBuilder()
+                        {
+                            Text =
+                                "Sniper By Jviguy Games! [Click Here!][https://github.com/Jviguy/Sharper/tree/master]"
+                        },
+                    }.Build());
+                }
+            }
+            catch (Exception e)
             {
                 await ReplyAsync(embed: new EmbedBuilder()
                 {
                     Title = "Error",
-                    Timestamp = new DateTimeOffset(),
-                    Footer = new EmbedFooterBuilder
-                    {
-                        Text = "Sniper By Jviguy Games! [Click Here!][]"
-                    },
+                    Description = e.Message
                 }.Build());
             }
         }
