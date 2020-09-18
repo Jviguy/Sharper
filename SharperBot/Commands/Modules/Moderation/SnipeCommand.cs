@@ -20,12 +20,12 @@ namespace SharperBot.Commands.Modules.Moderation
                 {
                     await ReplyAsync(embed: new EmbedBuilder()
                     {
-                        Title = "Error",
+                        Title = "No Messages To Snipe!",
+                        Description = "Sniper By Jviguy Games! [Click Here!](https://github.com/Jviguy/Sharper/tree/master)",
                         Footer = new EmbedFooterBuilder()
                         {
-                            Text =
-                                "Sniper By Jviguy Games! [Click Here!][https://github.com/Jviguy/Sharper/tree/master]"
-                        },
+                            Text = "0/0 Messages found in this channel!"
+                        }
                     }.Build());
                 }
             }

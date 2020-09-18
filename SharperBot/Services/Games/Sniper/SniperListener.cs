@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Discord;
 using Discord.WebSocket;
 using SharperBot.Services.Games.Structures;
@@ -15,7 +16,7 @@ namespace SharperBot.Services.Games.Sniper
         }
         public async Task Handle(Cacheable<IMessage,ulong> cacheable, ISocketMessageChannel channel)
         {
-            var msg = cacheable.Value;
+            var msg = channel.CachedMessages.Last();
             if (Manager.ShouldAddChannel(msg.Channel.Id))
             {
                 Manager.AddChannel(msg.Channel.Id);
