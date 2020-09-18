@@ -19,6 +19,7 @@
 
     <ItemGroup>
       <Folder Include="Commands\Modules\Economy" />
+      <Folder Include="Commands\Modules\Moderation" />
     </ItemGroup>
 
 </Project>

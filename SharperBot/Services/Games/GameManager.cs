@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Discord.Commands;
 using Discord.WebSocket;
 using SharperBot.Services.Games.Counting;
-using SharperBot.Services.Games.Sniper;
 
 namespace SharperBot.Services.Games
 {
@@ -27,7 +25,6 @@ namespace SharperBot.Services.Games
         {
             Console.WriteLine("Started Loading Games!");
             Loadedgames.Add(Counting,new CountingGameManager(Client));
-            Loadedgames.Add(Sniper,new SniperLoader(Client));
             foreach (var loadedgame in Loadedgames)
             {
                 loadedgame.Value.Load();
@@ -40,6 +37,5 @@ namespace SharperBot.Services.Games
         }
         //consts
         public const string Counting = "Counting";
-        public const string Sniper = "Sniper";
     }
 }
