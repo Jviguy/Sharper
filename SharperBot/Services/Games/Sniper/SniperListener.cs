@@ -16,11 +16,25 @@ namespace SharperBot.Services.Games.Sniper
         }
         public async Task Handle(Cacheable<IMessage,ulong> cacheable, ISocketMessageChannel channel)
         {
-            var msg = channel.CachedMessages.Last();
-            if (Manager.ShouldAddChannel(msg.Channel.Id))
+            if (cacheable.HasValue)
             {
-                Manager.AddChannel(msg.Channel.Id);
+                var msg = cacheable.Value;
+                if (Manager.ShouldAddChannel(msg.Channel.Id))
+                {
+                    Manager.AddChannel(msg.Channel.Id);
+                }
             }
+            else
+            {
+                //we are fucked because no cache was stored so yeah
+            }
+        }
+
+        public async Task Message(SocketMessage messageParam)
+        {
+            var message = messageParam as SocketUserMessage;
+            if (message == null) return;
+            
         }
     }
 }
