@@ -118,12 +118,10 @@ namespace SharperBot.Services.Minecraft.Query
                     }
                     else sb.Append((char) currentByte);
                 }
-
                 stream.Read(buffer, 0, 10); // Padding: 10 bytes constant
                 var constant2 = new byte[] {0x01, 0x70, 0x6C, 0x61, 0x79, 0x65, 0x72, 0x5F, 0x00, 0x00};
                 for (int i = 0; i < constant2.Length; i++)
                     Debug.Assert(constant2[i] == buffer[i], "Byte mismatch at " + i + " Val :" + buffer[i]);
-
                 while ((currentByte = stream.ReadByte()) != -1)
                 {
                     if (currentByte == 0x00)
