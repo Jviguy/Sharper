@@ -63,6 +63,17 @@ namespace SharperBot.Commands.Modules.Misc
                 }.Build());
                 stopwatch.Stop();
             }
+            catch (ArgumentOutOfRangeException)
+            {
+                await ReplyAsync(embed:
+                    new EmbedBuilder()
+                    {
+                        Title = "Google Error",
+                        Description = "No Results Found!",
+                        ImageUrl = "https://media.tenor.com/images/21aa6ef4312e1abcd50ffca5e1d4dd75/tenor.gif"
+                    }.Build()
+                );
+            }
             catch (Exception e)
             {
                 await ReplyAsync(embed:
@@ -72,7 +83,7 @@ namespace SharperBot.Commands.Modules.Misc
                         Description = e.Message,
                         ImageUrl = "https://media.tenor.com/images/21aa6ef4312e1abcd50ffca5e1d4dd75/tenor.gif"
                     }.Build()
-                    );
+                );
             }
         }
     }
