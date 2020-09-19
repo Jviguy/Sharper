@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -19,20 +20,21 @@ namespace SharperBot.Commands.Modules.Minecraft
         {
             try
             {
-                var start = DateTime.Now;
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
                 var query = new MCQuery(ip,port);
                 var data = query.Query();
                 var em = new EmbedBuilder() {Title = $"A Long Query On {ip}!"};
                 em.Footer = new EmbedFooterBuilder()
                 {
                     Text = "- A Long Query By " + Context.User.Username +"#"+Context.User.Discriminator
-                        + " - Done in " + DateTime.Compare(DateTime.Now, start),
+                        + " - Done in " + stopwatch.ElapsedMilliseconds + "s",
                     IconUrl = Context.User.GetAvatarUrl()
                 };
                 em.Color = new ColorUtils().ColorRand();
-                em.AddField("MOTD: ", RemoveSpecialCharacters(data.MessageOfTheDay));
+                em.AddField("MOTD: ", data.MessageOfTheDay);
                 em.AddField("Game: ", data.GameId);
-                em.AddField("Version: ", RemoveSpecialCharacters(data.Version));
+                em.AddField("Version: ", data.Version);
                 em.AddField("GameType: ", data.Gametype);
                 em.AddField("Software: ", data.Plugins);
                 em.AddField("Player Count: ", data.NumPlayers + "/" + data.MaxPlayers);
@@ -45,20 +47,12 @@ namespace SharperBot.Commands.Modules.Minecraft
                     em.AddField("Players: ",string.Join(" ",data.Players.ToArray()));
                 }
                 await ReplyAsync(embed: em.Build());
+                stopwatch.Stop();
             }
             catch (Exception e)
             {
                 await ReplyAsync(embed: new EmbedBuilder(){Title = "ERROR", Description = e.Message}.Build());
             }
-        }
-        public static string RemoveSpecialCharacters(string str) { 
-            var sb = new StringBuilder();
-            foreach (char c in str) {
-                if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '.' || c == '_') {
-                    sb.Append(c);
-                }
-            }
-            return sb.ToString();
         }
     }
 }
