@@ -15,47 +15,65 @@ namespace SharperBot.Commands.Modules.Misc
         [Command("yt", RunMode = RunMode.Async)]
         public async Task YtSearchAsync([Remainder] string query)
         {
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
-            var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+            try
             {
-                ApiKey = Program.GoogleToken,
-                ApplicationName = "Sharper Bot"
-            });
-            var searchListRequest = youtubeService.Search.List("snippet");
-            searchListRequest.Q = query; // Replace with your search term.
-            searchListRequest.MaxResults = 10;
-            // Call the search.list method to retrieve results matching the specified query term.
-            var searchListResponse = await searchListRequest.ExecuteAsync();
-            List<string> videos = new List<string>();
-            // Add each result to the appropriate list, and then display the lists of
-            // matching videos, channels, and playlists.
-            foreach (var searchResult in searchListResponse.Items)
-            {
-                switch (searchResult.Id.Kind)
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+                var youtubeService = new YouTubeService(new BaseClientService.Initializer()
                 {
-                    case "youtube#video":
-                        videos.Add($"{searchResult.Snippet.Title} by {searchResult.Snippet.ChannelTitle} - [Click Here To Watch Now!](https://www.youtube.com/watch?v={searchResult.Id.VideoId})");
-                        break;
-                }
-            }
-            var des = new StringBuilder();
-            foreach (var text in videos)
-            {
-                des.Append(text + "\n");
-            }
-            await ReplyAsync(embed: new EmbedBuilder()
-            {
-                Title = "Search Results from Youtube!",
-                Description = des.ToString(),
-                ImageUrl = searchListResponse.Items[0].Snippet.Thumbnails.High.Url,
-                Footer = new EmbedFooterBuilder()
+                    ApiKey = Program.GoogleToken,
+                    ApplicationName = "Sharper Bot"
+                });
+                var searchListRequest = youtubeService.Search.List("snippet");
+                searchListRequest.Q = query; // Replace with your search term.
+                searchListRequest.MaxResults = 10;
+                // Call the search.list method to retrieve results matching the specified query term.
+                var searchListResponse = await searchListRequest.ExecuteAsync();
+                List<string> videos = new List<string>();
+                // Add each result to the appropriate list, and then display the lists of
+                // matching videos, channels, and playlists.
+                foreach (var searchResult in searchListResponse.Items)
                 {
-                    Text = " - A Youtube Search by " + Context.User.Username + " Done in 0." + stopwatch.ElapsedMilliseconds + "s!",
-                    IconUrl = Context.User.GetAvatarUrl()
+                    switch (searchResult.Id.Kind)
+                    {
+                        case "youtube#video":
+                            videos.Add(
+                                $"{searchResult.Snippet.Title} by {searchResult.Snippet.ChannelTitle} - [Click Here To Watch Now!](https://www.youtube.com/watch?v={searchResult.Id.VideoId})");
+                            break;
+                    }
                 }
-            }.Build());
-            stopwatch.Stop();
+
+                var des = new StringBuilder();
+                foreach (var text in videos)
+                {
+                    des.Append(text + "\n");
+                }
+
+                await ReplyAsync(embed: new EmbedBuilder()
+                {
+                    Title = "Search Results from Youtube!",
+                    Description = des.ToString(),
+                    ImageUrl = searchListResponse.Items[0].Snippet.Thumbnails.High.Url,
+                    Footer = new EmbedFooterBuilder()
+                    {
+                        Text = " - A Youtube Search by " + Context.User.Username + " Done in 0." +
+                               stopwatch.ElapsedMilliseconds + "s!",
+                        IconUrl = Context.User.GetAvatarUrl()
+                    }
+                }.Build());
+                stopwatch.Stop();
+            }
+            catch (Exception e)
+            {
+                await ReplyAsync(embed:
+                    new EmbedBuilder()
+                    {
+                        Title = "Google Error",
+                        Description = e.Message,
+                        ImageUrl = "https://media.tenor.com/images/21aa6ef4312e1abcd50ffca5e1d4dd75/tenor.gif"
+                    }.Build()
+                    );
+            }
         }
     }
 }
