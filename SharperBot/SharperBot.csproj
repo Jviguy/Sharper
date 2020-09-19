@@ -13,6 +13,8 @@
       <PackageReference Include="Discord.Net.Rest" Version="2.2.0" />
       <PackageReference Include="Discord.Net.WebSocket" Version="2.2.0" />
       <PackageReference Include="Google.Apis" Version="1.49.0" />
+      <PackageReference Include="Google.Apis.Customsearch.v1" Version="1.49.0.2084" />
+      <PackageReference Include="Google.Apis.Discovery.v1" Version="1.49.0" />
       <PackageReference Include="Google.Apis.YouTube.v3" Version="1.49.0.2084" />
       <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0-preview.8.20407.11" />
