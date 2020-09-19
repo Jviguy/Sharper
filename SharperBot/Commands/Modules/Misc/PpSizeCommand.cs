@@ -38,7 +38,7 @@ namespace SharperBot.Commands.Modules.Misc
             {
                 Title = "Nice Cock Bro!",
                 Description = pp.ToString(),
-                ImageUrl = DickUtils.FetchRandom()
+                ThumbnailUrl = DickUtils.FetchRandom()
             }.Build());
         }
     }
