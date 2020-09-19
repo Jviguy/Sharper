@@ -3,6 +3,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
+using SharperBot.Services.Discord.Embed;
 
 namespace SharperBot.Commands.Modules.Moderation
 {
@@ -16,13 +17,14 @@ namespace SharperBot.Commands.Modules.Moderation
             var id = MentionUtils.ParseUser(user);
             var ban = Context.Guild.GetUser(id);
             await Context.Message.AddReactionAsync(new Emoji("✅"));
+            var loading = new LoadingUtils();
             await Task.Run(async () => //Task.Run automatically unwraps nested Task types!
             {
                 await Task.Delay(2000);
                 var w = await ReplyAsync(embed: new EmbedBuilder()
                 {
                     Title = "Processing!",
-                    ImageUrl = "https://media4.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"
+                    ImageUrl = loading.FetchRandomGIF()
                 }.Build());
                 await Task.Delay(3000);
                 await w.DeleteAsync();
