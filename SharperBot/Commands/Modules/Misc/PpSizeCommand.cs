@@ -12,6 +12,7 @@ namespace SharperBot.Commands.Modules.Misc
     public class PpSizeCommand : ModuleBase<SocketCommandContext>
     {
         private readonly Random rnd = new Random();
+        private readonly DickUtils DickUtils = new DickUtils();
         [Command("pp",false,RunMode = RunMode.Async)]
         public async Task PpSizeAsync()
         {
@@ -36,7 +37,8 @@ namespace SharperBot.Commands.Modules.Misc
             await ReplyAsync(embed: new EmbedBuilder()
             {
                 Title = "Nice Cock Bro!",
-                Description = pp.ToString()
+                Description = pp.ToString(),
+                ImageUrl = DickUtils.FetchRandom()
             }.Build());
         }
     }
