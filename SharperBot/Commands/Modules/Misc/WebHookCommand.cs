@@ -7,19 +7,20 @@ using Discord.Commands;
 
 namespace SharperBot.Commands.Modules.Misc
 {
-    public class cURLCommand : ModuleBase<SocketCommandContext>
+    [Group("curl")]
+    public class WebHookCommand : ModuleBase<SocketCommandContext>
     {
-        [Command("curl", RunMode = RunMode.Async)]
+        [Command("webhook", RunMode = RunMode.Async)]
         public async Task CurlAsync(string url,[Remainder] string request)
         {
             using (var webClient = new WebClient())
             {
                 var re = request.Split(" ");
-                var s = request.Split(" ");
-                var l = s.ToList();
-                l.RemoveAt(0);
-                l.RemoveAt(1);
-                l.RemoveAt(2);
+                var l = re.ToList();
+                for (var a = 0; a < 3; a++)
+                {
+                    l.RemoveAt(0);
+                }
                 var msg = string.Join(" ", l);
                 webClient.UploadValues(new Uri(url),new NameValueCollection()
                 {
