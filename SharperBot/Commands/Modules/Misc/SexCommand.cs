@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
+using SharperBot.Services.Discord.Embed;
 
 namespace SharperBot.Commands.Modules.Misc
 {
     public class SexCommand : ModuleBase<SocketCommandContext>
     {
         private Random rnd = new Random();
-
+        private SexUtils SexUtils = new SexUtils();
         [Command("sex", RunMode = RunMode.Async)]
         public async Task SexAsync(string fucker, string victom)
         {
@@ -24,6 +25,7 @@ namespace SharperBot.Commands.Modules.Misc
                     {
                         Title = f.Username + " Absolutley Wanged the bang and " + v.Username +
                                 " Ran as he tried to get her back!",
+                        ImageUrl = SexUtils.FetchRandom(),
                         Footer = new EmbedFooterBuilder()
                         {
                             Text = "Sex Score of " +sexscore + " out of 100 || " + sexscore + "/100!",
@@ -40,9 +42,10 @@ namespace SharperBot.Commands.Modules.Misc
                     {
                         Title = f.Username+ " Fucking laid a whole train of pipe on " + v.Username + " For " + sexscore +
                                 " Hours!",
+                        ImageUrl = SexUtils.FetchRandom(),
                         Footer = new EmbedFooterBuilder()
                         {
-                            Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
+                            Text = "Sex Score of " +sexscore + " out of 100 || " + sexscore + "/100!",
                             IconUrl = f.GetAvatarUrl()
                         }
                     }.Build()
@@ -55,9 +58,10 @@ namespace SharperBot.Commands.Modules.Misc
                     embed: new EmbedBuilder()
                     {
                         Title = f.Username + " Laid a small salamander on " + v.Username + "!",
+                        ImageUrl = SexUtils.FetchRandom(),
                         Footer = new EmbedFooterBuilder()
                         {
-                            Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
+                            Text = "Sex Score of " +sexscore + " out of 100 || " + sexscore + "/100!",
                             IconUrl = f.GetAvatarUrl()
                         }
                     }.Build()
@@ -71,9 +75,10 @@ namespace SharperBot.Commands.Modules.Misc
                     {
                         Title = f.Username + " Hit the perfect Middle with his little wiener on " + v.Username + " For " +
                                 sexscore + " Minutes!",
+                        ImageUrl = SexUtils.FetchRandom(),
                         Footer = new EmbedFooterBuilder()
                         {
-                            Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
+                            Text = "Sex Score of " +sexscore + " out of 100 || " + sexscore + "/100!",
                             IconUrl = f.GetAvatarUrl()
                         }
                     }.Build()
@@ -84,9 +89,10 @@ namespace SharperBot.Commands.Modules.Misc
                 embed: new EmbedBuilder()
                 {
                     Title = f.Username + " almost hit a home run on " + v.Username + "!",
+                    ImageUrl = SexUtils.FetchRandom(),
                     Footer = new EmbedFooterBuilder()
                     {
-                        Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
+                        Text = "Sex Score of " +sexscore + " out of 100 || " + sexscore + "/100!",
                         IconUrl = f.GetAvatarUrl()
                     }
                 }.Build()
