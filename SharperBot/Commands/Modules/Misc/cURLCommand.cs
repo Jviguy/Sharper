@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
-using Discord;
 using Discord.Commands;
 
 namespace SharperBot.Commands.Modules.Misc
@@ -13,21 +12,20 @@ namespace SharperBot.Commands.Modules.Misc
         [Command("curl", RunMode = RunMode.Async)]
         public async Task CurlAsync(string url,[Remainder] string request)
         {
-            var array = request.Split(" ");
-            var requestContent = new FormUrlEncodedContent(new [] {
-                new KeyValuePair<string, string>(array[0],string.Join(" ",array,1)),
-            });
-            var client = new HttpClient();
-            HttpResponseMessage response = await client.PostAsync(
-                url,requestContent);
-            HttpContent responseContent = response.Content;
-            using (var reader = new StreamReader(await responseContent.ReadAsStreamAsync()))
+            using (var webClient = new WebClient())
             {
-                await ReplyAsync(embed: new EmbedBuilder()
+                var re = request.Split(" ");
+                var s = request.Split(" ");
+                var l = s.ToList();
+                l.RemoveAt(0);
+                l.RemoveAt(1);
+                l.RemoveAt(2);
+                var msg = string.Join(" ", l);
+                webClient.UploadValues(new Uri(url),new NameValueCollection()
                 {
-                    Title = "Curl Response!",
-                    Description = await reader.ReadToEndAsync()
-                }.Build());
+                    {re[0], re[1]},
+                    {re[2],msg}
+                });
             }
         }
     }
