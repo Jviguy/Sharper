@@ -33,7 +33,7 @@ namespace SharperBot.Commands.Modules.Misc
             {
                 pp.Append("=");
             }
-            pp.Append(">");
+            pp.Append("D");
             await ReplyAsync(embed: new EmbedBuilder()
             {
                 Title = "Nice Cock Bro!",
