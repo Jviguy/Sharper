@@ -8,8 +8,8 @@ namespace SharperBot.Commands.Modules.Misc
 {
     public class SexCommand : ModuleBase<SocketCommandContext>
     {
-        private Random rnd = new Random();
-        private SexUtils SexUtils = new SexUtils();
+        private readonly Random rnd = new Random();
+        private readonly SexUtils SexUtils = new SexUtils();
         [Command("sex", RunMode = RunMode.Async)]
         public async Task SexAsync(string fucker, string victom)
         {

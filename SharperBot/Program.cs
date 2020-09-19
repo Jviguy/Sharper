@@ -12,9 +12,11 @@ namespace SharperBot
     class Program
     {
         private GameManager GameManager;
-        static void Main(string[] args) => new Program().MainAsync(args[0]).GetAwaiter().GetResult();
-        private async Task MainAsync(string token) 
+        public static string GoogleToken;
+        static void Main(string[] args) => new Program().MainAsync(args[0],args[1]).GetAwaiter().GetResult();
+        private async Task MainAsync(string token,string googletoken)
         {
+            GoogleToken = googletoken;
             var client = new DiscordSocketClient();
             GameManager = new GameManager(client);
             GameManager.Load();
