@@ -22,11 +22,11 @@ namespace SharperBot.Commands.Modules.Misc
                 await ReplyAsync(
                     embed: new EmbedBuilder()
                     {
-                        Title = f.Mention + " Absolutley Wanged the bang and " + v.Mention +
+                        Title = f.Username + " Absolutley Wanged the bang and " + v.Username +
                                 " Ran as he tried to get her back!",
                         Footer = new EmbedFooterBuilder()
                         {
-                            Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
+                            Text = "Sex Score of " +sexscore + " out of 100 || " + sexscore + "/100!",
                             IconUrl = f.GetAvatarUrl()
                         }
                     }.Build()
@@ -38,7 +38,7 @@ namespace SharperBot.Commands.Modules.Misc
                 await ReplyAsync(
                     embed: new EmbedBuilder()
                     {
-                        Title = f.Mention + " Fucking laid a whole train of pipe on " + v.Mention + " For " + sexscore +
+                        Title = f.Username+ " Fucking laid a whole train of pipe on " + v.Username + " For " + sexscore +
                                 " Hours!",
                         Footer = new EmbedFooterBuilder()
                         {
@@ -54,7 +54,7 @@ namespace SharperBot.Commands.Modules.Misc
                 await ReplyAsync(
                     embed: new EmbedBuilder()
                     {
-                        Title = f.Mention + " Laid a small salamander on " + v.Mention + "!",
+                        Title = f.Username + " Laid a small salamander on " + v.Username + "!",
                         Footer = new EmbedFooterBuilder()
                         {
                             Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
@@ -69,7 +69,7 @@ namespace SharperBot.Commands.Modules.Misc
                 await ReplyAsync(
                     embed: new EmbedBuilder()
                     {
-                        Title = f.Mention + " Hit the perfect Middle with his little wiener on " + v.Mention + " For " +
+                        Title = f.Username + " Hit the perfect Middle with his little wiener on " + v.Username + " For " +
                                 sexscore + " Minutes!",
                         Footer = new EmbedFooterBuilder()
                         {
@@ -83,7 +83,7 @@ namespace SharperBot.Commands.Modules.Misc
             await ReplyAsync(
                 embed: new EmbedBuilder()
                 {
-                    Title = f.Mention + " almost hit a home run on " + v.Mention + "!",
+                    Title = f.Username + " almost hit a home run on " + v.Username + "!",
                     Footer = new EmbedFooterBuilder()
                     {
                         Text = "Sex Score of " +sexscore + "out of 100 || " + sexscore + "/100!",
