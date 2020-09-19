@@ -22,18 +22,12 @@ namespace SharperBot.Commands.Modules.Misc
                 ApiKey = Program.GoogleToken,
                 ApplicationName = "Sharper Bot"
             });
-
             var searchListRequest = youtubeService.Search.List("snippet");
             searchListRequest.Q = query; // Replace with your search term.
             searchListRequest.MaxResults = 10;
-
             // Call the search.list method to retrieve results matching the specified query term.
             var searchListResponse = await searchListRequest.ExecuteAsync();
-
             List<string> videos = new List<string>();
-            List<string> channels = new List<string>();
-            List<string> playlists = new List<string>();
-
             // Add each result to the appropriate list, and then display the lists of
             // matching videos, channels, and playlists.
             foreach (var searchResult in searchListResponse.Items)
