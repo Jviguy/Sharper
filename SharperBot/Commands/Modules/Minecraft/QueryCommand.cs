@@ -28,7 +28,7 @@ namespace SharperBot.Commands.Modules.Minecraft
                 em.Footer = new EmbedFooterBuilder()
                 {
                     Text = "- A Long Query By " + Context.User.Username +"#"+Context.User.Discriminator
-                        + " - Done in " + stopwatch.ElapsedMilliseconds + "s",
+                        + " - Done in " + "0." +stopwatch.ElapsedMilliseconds + "s",
                     IconUrl = Context.User.GetAvatarUrl()
                 };
                 em.Color = new ColorUtils().ColorRand();
