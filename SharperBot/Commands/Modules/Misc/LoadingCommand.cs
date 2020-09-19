@@ -7,7 +7,7 @@ namespace SharperBot.Commands.Modules.Misc
 {
     public class LoadingCommand : ModuleBase<SocketCommandContext>
     {
-        private LoadingUtils loading = new LoadingUtils();
+        private readonly LoadingUtils loading = new LoadingUtils();
         [Command("loading", RunMode = RunMode.Async)]
         public async Task LoadingAsync()
         {
