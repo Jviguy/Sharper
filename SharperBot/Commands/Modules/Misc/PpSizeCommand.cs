@@ -13,7 +13,7 @@ namespace SharperBot.Commands.Modules.Misc
     {
         private readonly Random rnd = new Random();
         private readonly DickUtils DickUtils = new DickUtils();
-        [Command("pp",false,RunMode = RunMode.Async)]
+        [Command("pp",true,RunMode = RunMode.Async)]
         public async Task PpSizeAsync()
         {
             var size = rnd.Next(1000);
