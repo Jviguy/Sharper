@@ -13,7 +13,7 @@ namespace SharperBot.Commands.Modules.Misc
         public async Task MsgRepeatAsync(int day, int hour, int minutes, int seconds, [Remainder] string message)
         {
             var tm = new Timer();
-            tm.Elapsed += async (Object source, ElapsedEventArgs e) =>
+            tm.Elapsed += async (source,e) =>
             {
                 await ReplyAsync(message);
             };
