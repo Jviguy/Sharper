@@ -15,7 +15,7 @@ namespace SharperBot.Commands.Modules.Misc
                 ThumbnailUrl = "https://avatars0.githubusercontent.com/u/62412449?s=60&v=4"
             }
                 .AddField("Invite Link: ","[Invite Link!](https://discord.com/oauth2/authorize?client_id=754357472315310130&scope=bot&permissions=8)")
-                .AddField("Github Link: ", "[Github Link](https://github.com/Jviguy/Sharper)")
+                .AddField("Github Link: ", "[Github Link!](https://github.com/Jviguy/Sharper)")
                 .Build());
         }
     }
