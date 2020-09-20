@@ -31,7 +31,8 @@ namespace SharperBot.Commands.Modules.Misc
                 ImageUrl = user.GetAvatarUrl(),
                 Footer = new EmbedFooterBuilder()
                 {
-                    Text = $" - Requested by {Context.User.Username} - Done in 0.{stopwatch.ElapsedMilliseconds}s!"
+                    Text = $" - Requested by {Context.User.Username} - Done in 0.{stopwatch.ElapsedMilliseconds}s!",
+                    IconUrl = Context.User.GetAvatarUrl()
                 }
             }.Build());
             stopwatch.Stop();
