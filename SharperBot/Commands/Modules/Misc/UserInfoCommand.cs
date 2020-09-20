@@ -37,7 +37,7 @@ namespace SharperBot.Commands.Modules.Misc
                 }
                 var joinspan = DateTime.Now.Subtract(user.JoinedAt.HasValue ? user.JoinedAt.Value.Date: DateTime.Now);
                 var premiumspan = DateTime.Now.Subtract(user.PremiumSince.HasValue ? user.PremiumSince.Value.Date: DateTime.Now);
-                var discordjoinspan = DateTime.Now.Subtract(user.CreatedAt.DateTime.Date);
+                var discordjoinspan = DateTime.Now.Subtract(user.CreatedAt.DateTime.Date); ;
                 await ReplyAsync(embed: new EmbedBuilder()
                 {
                     Title = "User Info On " + user.Username,
@@ -49,8 +49,7 @@ namespace SharperBot.Commands.Modules.Misc
                         IconUrl = Context.User.GetAvatarUrl()
                     },
                     Timestamp = DateTimeOffset.Now
-                }
-                    .AddField("Username: ",user.Username)
+                }.AddField("Username: ",user.Username)
                     .AddField("Nickname: ",user.Nickname ?? "None")
                     .AddField("Bot? ", user.IsBot ?":green_circle:":":red_circle:")
                     .AddField("WebHook? ",user.IsWebhook?":green_circle:":":red_circle:")
