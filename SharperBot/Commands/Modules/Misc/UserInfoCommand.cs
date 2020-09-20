@@ -36,6 +36,7 @@ namespace SharperBot.Commands.Modules.Misc
                     }
                 }
                 var joinspan = DateTime.Now.Subtract(user.JoinedAt.HasValue ? user.JoinedAt.Value.Date: DateTime.Now);
+                var premiumspan = DateTime.Now.Subtract(user.PremiumSince.HasValue ? user.PremiumSince.Value.Date: DateTime.Now);
                 var discordjoinspan = DateTime.Now.Subtract(user.CreatedAt.DateTime.Date);
                 await ReplyAsync(embed: new EmbedBuilder()
                 {
@@ -51,10 +52,19 @@ namespace SharperBot.Commands.Modules.Misc
                 }
                     .AddField("Username: ",user.Username)
                     .AddField("Nickname: ",user.Nickname ?? "None")
+                    .AddField("Bot? ", user.IsBot ?":green_circle:":":red_circle:")
+                    .AddField("WebHook? ",user.IsWebhook?":green_circle:":":red_circle:")
+                    .AddField("Deafened? ",user.IsDeafened?":green_circle:":":red_circle:")
+                    .AddField("Muted? ", user.IsMuted?":green_circle:":":red_circle:")
+                    .AddField("Premium? ",user.PremiumSince.HasValue? user.Username + " Has been Premium since " + user.PremiumSince.Value + $" - ({premiumspan.Days} days ago!)":user.Username + " Is Not Premium!")
+                    .AddField("Permissions Count: ",user.GuildPermissions.ToList().Count)
+                    .AddField("Roles Count: ", user.Nickname+ " Has "+user.Roles.Count+" Roles!")
+                    .AddField("Hierarchy Level: ",user.Hierarchy == 2147483647 ? user.Hierarchy + " Owner/Highest Role!": user.Hierarchy.ToString())
                     .AddField("Status: ",user.Status.ToString() == "Online" ?":green_circle:":":red_circle:")
                     .AddField("Joined This Server at: ",user.JoinedAt.HasValue ? user.JoinedAt.Value.Date + $" - ({joinspan.Days} days ago!)" : "Date Not Found")
                     .AddField("Joined Discord on: ",user.CreatedAt.DateTime.Date + $" - ({discordjoinspan.Days} days ago!)")
                     .AddField("Roles: ",string.Join(", ",user.Roles))
+                    .AddField("Permissions: ", string.Join(", ", user.GuildPermissions.ToList()))
                     .Build());
                 stpwatch.Stop();
             }
