@@ -16,6 +16,7 @@ namespace SharperBot.Commands.Modules.Misc
             }
                 .AddField("Invite Link: ","[Invite Link!](https://discord.com/oauth2/authorize?client_id=754357472315310130&scope=bot&permissions=8)")
                 .AddField("Github Link: ", "[Github Link!](https://github.com/Jviguy/Sharper)")
+                .AddField("Top.gg Link:", "Not Verified Yet!")
                 .Build());
         }
     }
