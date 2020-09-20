@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Timers;
 
 namespace SharperBot.Services.Minecraft.Query
 {
@@ -143,6 +144,14 @@ namespace SharperBot.Services.Minecraft.Query
             var UdpState = new UdpState() {Client = u, IpEndPoint = e};
             try
             {
+                var Timer = new Timer(2000);
+                // Hook up the Elapsed event for the timer. 
+                Timer.Elapsed += (source,d) =>
+                {
+                    u.Close();
+                    Timer.Dispose();
+                };
+                Timer.Start();
                 u.Connect(Host, Port);
                 WriteData(UdpState, Handshake);
                 var message = ReceiveMessages(UdpState);
