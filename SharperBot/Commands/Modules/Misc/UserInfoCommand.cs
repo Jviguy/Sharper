@@ -1,38 +1,62 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
+using SharperBot.Services.Discord.Embed;
 
 namespace SharperBot.Commands.Modules.Misc
 {
     public class UserInfoCommand : ModuleBase<SocketCommandContext>
     {
+        private ColorUtils _colorUtils = new ColorUtils();
         [Command("usrinfo", RunMode = RunMode.Async)]
-        public async Task UserInfoAsync(string id)
+        public async Task UserInfoAsync(string id = null)
         {
             try
             {
                 SocketGuildUser user;
-                try
+                var stpwatch = new Stopwatch();
+                stpwatch.Start();
+                if (id == null)
                 {
-                    var b = MentionUtils.ParseUser(id);
-                    user = Context.Guild.GetUser(b);
+                    user = Context.Guild.GetUser(Context.User.Id);
                 }
-                catch (Exception)
+                else
                 {
-                    user = Context.Guild.GetUser(Convert.ToUInt64(id));
+                    try
+                    {
+                        var b = MentionUtils.ParseUser(id);
+                        user = Context.Guild.GetUser(b);
+                    }
+                    catch (Exception)
+                    {
+                        user = Context.Guild.GetUser(Convert.ToUInt64(id));
+                    }
                 }
+                var joinspan = DateTime.Now.Subtract(user.JoinedAt.HasValue ? user.JoinedAt.Value.Date: DateTime.Now);
+                var discordjoinspan = DateTime.Now.Subtract(user.CreatedAt.DateTime.Date);
                 await ReplyAsync(embed: new EmbedBuilder()
                 {
                     Title = "User Info On " + user.Username,
+                    Color = _colorUtils.ColorRand(),
+                    ThumbnailUrl = user.GetAvatarUrl(),
+                    Footer = new EmbedFooterBuilder()
+                    {
+                        Text = $" - Requested By {Context.User.Username} - Done in 0.{stpwatch.ElapsedMilliseconds}s",
+                        IconUrl = Context.User.GetAvatarUrl()
+                    },
+                    Timestamp = DateTimeOffset.Now
                 }
                     .AddField("Username: ",user.Username)
                     .AddField("Nickname: ",user.Nickname ?? "None")
-                    .AddField("Joined This Server at: ",user.JoinedAt.HasValue ? user.JoinedAt.Value.Date.ToString() : "Date Not Found")
-                    .AddField("Joined Discord on: ",user.CreatedAt.DateTime.Date.ToString())
+                    .AddField("Status: ",user.Status.ToString() == "Online" ?":green_circle:":":red_circle:")
+                    .AddField("Joined This Server at: ",user.JoinedAt.HasValue ? user.JoinedAt.Value.Date + $" - ({joinspan.Days} days ago!)" : "Date Not Found")
+                    .AddField("Joined Discord on: ",user.CreatedAt.DateTime.Date + $" - ({discordjoinspan.Days} days ago!)")
+                    .AddField("Roles: ",string.Join(", ",user.Roles))
                     .Build());
+                stpwatch.Stop();
             }
             catch (Exception e)
             {

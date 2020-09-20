@@ -6,18 +6,22 @@ using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using SharperBot.Commands;
 using SharperBot.Services.Games;
+using SharperBot.Services.MySQL;
 
 namespace SharperBot
 {
     class Program
     {
         private GameManager GameManager;
+        private ConnectionManager ConnectionManager;
         public static string GoogleToken;
         static void Main(string[] args) => new Program().MainAsync(args[0],args[1]).GetAwaiter().GetResult();
         private async Task MainAsync(string token,string googletoken)
         {
             GoogleToken = googletoken;
             var client = new DiscordSocketClient();
+            //ConnectionManager = new ConnectionManager(mysqldetails);
+            //await ConnectionManager.StartAsync();
             GameManager = new GameManager(client);
             GameManager.Load();
             client.Log += Log;
