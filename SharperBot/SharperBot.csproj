@@ -15,7 +15,7 @@
       <PackageReference Include="Google.Apis.Customsearch.v1" Version="1.49.0.2084" />
       <PackageReference Include="Google.Apis.Discovery.v1" Version="1.49.0" />
       <PackageReference Include="Google.Apis.YouTube.v3" Version="1.49.0.2084" />
-      <PackageReference Include="GroupDocs.Translation-Cloud" Version="20.8.0" />
+      <PackageReference Include="GroupDocs.Translation-Cloud" Version="20.9.0" />
       <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
       <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0-preview.8.20407.11" />
